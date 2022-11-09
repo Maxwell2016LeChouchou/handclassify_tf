@@ -231,7 +231,7 @@ def parse_args():
     # parser.add_argument('--image_path', dest='image_path', help='image path',
                         # default='data/untouch', type=str)
     parser.add_argument('--anno_file', dest='anno_file', help='anno file',
-                        default='data/untouch/anno_hand_6class.txt', type=str)
+                        default='data/hengda_wutong/anno_hand_6class.txt', type=str)
     parser.add_argument('--size', dest='size', help='112, 96, 80, 64', default='96', type=str)
     parser.add_argument('--base_num', dest='base_num', help='base num', default='20', type=str)
     parser.add_argument('--thread_num', dest='thread_num', help='thread num', default='4', type=str)

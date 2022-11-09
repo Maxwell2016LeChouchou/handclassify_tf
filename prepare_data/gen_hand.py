@@ -153,7 +153,7 @@ def gen_hand_for_one_image(size, idx, ori_img, save_dir, annotation, base_nums, 
     return hand_names, hand_nums
 
 def gen_hand(image_path, anno_file, size=20, base_num = 1, thread_num = 4, class_num = 10):
-    save_dir = '/data4/wjz/gesture/shengteng/data_aug_v10_all_pos/%d'%(size)
+    save_dir = '/data4/wjz/gesture/shengteng/data_all_pos/%d'%(size)
     hand_save_dir = save_dir + '/hand'
 
     if not os.path.exists(save_dir):
@@ -224,9 +224,9 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train proposal net',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--image_path', dest='image_path', help='image path',
-                        default='data/untouch', type=str)
+                        default='data/shengteng', type=str)
     parser.add_argument('--anno_file', dest='anno_file', help='anno file',
-                        default='data/untouch/anno_hand_6class.txt', type=str)
+                        default='data/shengteng/anno_hand_9class.txt', type=str)
     parser.add_argument('--size', dest='size', help='112, 96, 80, 64', default='96', type=str)
     parser.add_argument('--base_num', dest='base_num', help='base num', default='15', type=str)
     parser.add_argument('--thread_num', dest='thread_num', help='thread num', default='4', type=str)

@@ -10,13 +10,13 @@ from core.networks_hand import get_network
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 parser = argparse.ArgumentParser(description='Tensorflow Pose Estimation Graph Extractor')
-parser.add_argument('--net_name', type=str, default='zq_wjz_hand_1', help='net model name')
+parser.add_argument('--net_name', type=str, default='hand_net1', help='net model name')
 parser.add_argument('--size_h', type=int, default=96)
 parser.add_argument('--size_w', type=int, default=96)
 parser.add_argument('--use_gray', type=bool, default=True)
-parser.add_argument('--checkpoint', type=str, default='models/zq1_hand/model-200000', help='checkpoint path')
+parser.add_argument('--checkpoint', type=str, default='models/hand_net1/model-200000', help='checkpoint path')
 parser.add_argument('--output_node_names', type=str, default='hand_out/flatten/Reshape')
-parser.add_argument('--output_graph', type=str, default='./model-zq1_hand.pb', help='output_freeze_path')
+parser.add_argument('--output_graph', type=str, default='./model-net1_hand.pb', help='output_freeze_path')
 
 args = parser.parse_args()
 

@@ -208,7 +208,7 @@ def main(args):
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--net_name', dest='net_name',type=str, default='zq_hand_1')
+    parser.add_argument('--net_name', dest='net_name',type=str, default='hand_net1')
     # parser.add_argument('--image_path', dest='image_path',type=str, default='./')
     parser.add_argument('--train_file', dest='train_file',type=str, default='prepare_data/96/hand.txt')
     parser.add_argument('--valid_file', dest='valid_file',type=str, default='prepare_data/96/hand.txt')

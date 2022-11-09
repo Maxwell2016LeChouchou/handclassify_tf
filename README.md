@@ -1,99 +1,104 @@
 # handclassify_tf_for_shengteng
 
-tensorflow训练手势分类---盛腾项目
+tensorflow train for hand classification 
 
-单帧手势共9种：详细情况请阅读docx文档
+Totally 9 different gesture types: please read the docx file for details
 
-# 运行环境
+# Environment 
 
+ubuntu: 16.04
 tensorflow: 1.15
-
-其他缺啥装啥
-
-# 数据集
+python: 3.6, 3.7, 3.8
+pip install numpy tqdm opencv-contrib-python
 
 
-**ClassifyHand-shengteng-part0**
+# Dataset
 
-每条记录包含字段如下：
+**ClassifyHand-part0**
 
-图片名 框 标签
+Each line of data has:
 
-框: x,y,w,h
+Image_name bbox label
 
-标签: 原始标签为0-27
+bbox: x, y, w, h
 
+label: orginal label has ID from 0 to 27
 
-# 数据准备
+# Data Preparation 
 
-目前数据集放在/nas/users/ZQ/handclassify_data_for_shengteng
+/nas/users/wjz/handclassify_data_for_shengteng
 
-**下载数据到data/untouch这个文件夹，解压之后目录如下:**
+**Download dataset to folder: data/shengteng:**
 
-	data/untouch/ClassifyHand-shengteng-part0
-	data/untouch/ClassifyHand-shengteng-part0.txt
+	data/shengteng/ClassifyHand-shengteng-part0
+	data/shengteng/ClassifyHand-shengteng-part0.txt
         ...
 
-**生成9类的annotation**
+**generate annotation for 9 gestures**
 
-控制台进入data/untouch输入命令：
+cd to data/shengteng and enter command line:
 
 	python transform_to_9class.py
 	
 	cat anno-ClassifyHand-shengteng-part0-9class.txt>anno_hand_9class.txt
 
-**生成用于训练的图片和annotation**
+**Generate training images and annotation**
 
-控制台进入此项目目录
-
-生成emotion数据(具体参数查看代码)
+Go to terminal and enter the command line
 
 	python prepare_data/gen_hand.py --base_num 20 --thread_num 10
 
 
-# 训练
+# Training 
 	
-控制台进入此项目目录
-
-训练emotion模型(具体参数查看代码)
+Go to terminal and enter the command line
 
 	python example/train_hand.py --gpus 0 --thread_num 10
 	
-训练灰度图模型需要添加参数
+
+If your data is gray or infrared image, then add parameter:
 
 	--use_gray True
 
-# 导出模型
+# Export model
 
-**导出pb模型**
+**export pb model**
 
-控制台进入此项目目录
+Go to terminal
 
-运行导出脚本(具体参数查看代码)
+Run export script(refer to the code for specific parameter)
 
-	python example/gen_frozen_pb_hand.py --checkpoint models/zq1_hand/model-300000 --output_graph ./model-zq1_hand-300000.pb
+	python example/gen_frozen_pb_hand.py --checkpoint models/wjz1_hand/model-300000 --output_graph ./model-wjz1_hand-300000.pb
 	
-导出灰度图模型需要添加参数
+If your data is gray or infrared image, then add parameter:
 
 	--use_gray True
 
-**pb转onnx**
+**pb to onnx**
 
-需要安装tf2onnx
+Need to install tf2onnx
 
-	python -m tf2onnx.convert --input model-zq1_hand-300000.pb --output model-zq1_hand-300000.onnx \
+	python -m tf2onnx.convert --input model-wjz1_hand-300000.pb --output model-wjz1_hand-300000.onnx \
 	       --inputs image:0 --outputs hand_out/flatten/Reshape:0 \
 	       --inputs-as-nchw image:0 \
    	       --rename-inputs data --rename-outputs hand \
 	       --verbose
 
-# 测试
+# Testing
 
-控制台进入此项目目录
+Go to terminal
 
-运行单张图测试示例代码(需要手工修改里面的参数)
+Run testing for single image
 
 	python example/test_hand.py
 
 
-# 其他说明
+# Others
+
+There are 5 different networks for speed/accuracy tradeoff:
+
+network_wjz1_hand.py
+network_wjz2_hand.py
+network_wjz3_hand.py
+network_wjz4_hand.py
+network_wjz5_hand.py

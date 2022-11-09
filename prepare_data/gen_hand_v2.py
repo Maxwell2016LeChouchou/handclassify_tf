@@ -81,17 +81,19 @@ def gen_hand_for_one_image(size, idx, ori_img, save_dir, annotation, base_nums, 
     height = ori_img.shape[0]
     x1 = float(annotation[0])
     y1 = float(annotation[1])
+    # w = float(annotation[2])
+    # h = float(annotation[3])
     x2 = float(annotation[2])
     y2 = float(annotation[3])
     w = x2 - x1
     h = y2 - y1
+
     label = int(annotation[4])
     cx = x1+0.5*w
     cy = y1+0.5*h
 
     if label < 0 or label >= class_num:
         return hand_names, hand_nums
-
 
     
     bbox_size = max(w,h)
@@ -139,10 +141,10 @@ def gen_hand_for_one_image(size, idx, ori_img, save_dir, annotation, base_nums, 
             flip_val = npr.randint(0,2)
             if flip_val == 1:
                 resized_im = resized_im[:,::-1]
-                if label == 5:
-                    out_label = 7
-                elif label == 7:
-                    out_label = 5
+                # if label == 5:
+                #     out_label = 7
+                # elif label == 7:
+                #     out_label = 5
         
         save_file = '%s/%d_%d.jpg'%(save_dir,idx,hand_num)
         if cv2.imwrite(save_file, resized_im):
@@ -153,7 +155,7 @@ def gen_hand_for_one_image(size, idx, ori_img, save_dir, annotation, base_nums, 
 
     return hand_names, hand_nums
 
-def gen_hand(image_path, anno_file, size=20, base_num = 1, thread_num = 4, class_num = 6):
+def gen_hand(image_path, anno_file, size=20, base_num = 1, thread_num = 4, class_num = 8):
     save_dir = './prepare_data/%d'%(size)
     hand_save_dir = save_dir + '/hand'
     
@@ -227,11 +229,11 @@ def parse_args():
     parser.add_argument('--image_path', dest='image_path', help='image path',
                         default='data/untouch', type=str)
     parser.add_argument('--anno_file', dest='anno_file', help='anno file',
-                        default='data/untouch/anno_hand_6class.txt', type=str)
+                        default='data/untouch/anno_hand_9class.txt', type=str)
     parser.add_argument('--size', dest='size', help='112, 96, 80, 64', default='96', type=str)
     parser.add_argument('--base_num', dest='base_num', help='base num', default='10', type=str)
     parser.add_argument('--thread_num', dest='thread_num', help='thread num', default='4', type=str)
-    parser.add_argument('--class_num', dest='class_num', help='class num', default='6', type=str)
+    parser.add_argument('--class_num', dest='class_num', help='class num', default='9', type=str)
     args = parser.parse_args()
     return args
 
@@ -240,3 +242,4 @@ if __name__ == '__main__':
     print('Called with argument:')
     print(args)
     gen_hand(args.image_path, args.anno_file, int(args.size), int(args.base_num), int(args.thread_num), int(args.class_num))
+

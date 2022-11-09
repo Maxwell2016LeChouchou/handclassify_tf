@@ -61,7 +61,7 @@ if __name__ == '__main__':
         "./prepare_data/96/hand/0_0.jpg",
         96,96,
         True,
-        "./model-zq1-gray-40000.pb",
+        "./model-net1-gray-40000.pb",
         'hand_out/flatten/Reshape'
     )
     #display_image()
