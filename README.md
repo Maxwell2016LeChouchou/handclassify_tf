@@ -12,7 +12,7 @@ tensorflow: 1.15
 
 python: 3.6, 3.7, 3.8
 
-pip install numpy tqdm opencv-contrib-python
+pip install numpy tqdm opencv-contrib-python easydict threading
 
 
 # Dataset
@@ -34,7 +34,7 @@ label: orginal label has ID from 0 to 27
 **Download dataset to folder: data/shengteng:**
 
 	data/shengteng/ClassifyHand-shengteng-part0
-	
+
 	data/shengteng/ClassifyHand-shengteng-part0.txt
         ...
 
