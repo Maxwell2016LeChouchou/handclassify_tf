@@ -7,8 +7,11 @@ Totally 9 different gesture types: please read the docx file for details
 # Environment 
 
 ubuntu: 16.04
+
 tensorflow: 1.15
+
 python: 3.6, 3.7, 3.8
+
 pip install numpy tqdm opencv-contrib-python
 
 
@@ -31,6 +34,7 @@ label: orginal label has ID from 0 to 27
 **Download dataset to folder: data/shengteng:**
 
 	data/shengteng/ClassifyHand-shengteng-part0
+	
 	data/shengteng/ClassifyHand-shengteng-part0.txt
         ...
 
@@ -98,7 +102,11 @@ Run testing for single image
 There are 5 different networks for speed/accuracy tradeoff:
 
 network_wjz1_hand.py
+
 network_wjz2_hand.py
+
 network_wjz3_hand.py
+
 network_wjz4_hand.py
+
 network_wjz5_hand.py
